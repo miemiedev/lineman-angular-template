@@ -37,21 +37,22 @@ module.exports = require(process.env['LINEMAN_MAIN']).config.extend('application
 
   // configuration for grunt-angular-templates
   ngtemplates: {
-    app: { // "app" matches the name of the angular module defined in app.js
+    index: {
       options: {
-        base: "app/templates"
+        base: "app/js"
       },
-      src: "app/templates/**/*.html",
-      // puts angular templates in a different spot than lineman looks for other templates in order not to conflict with the watch process
-      dest: "generated/angular/template-cache.js"
+      src: "app/js/index/templates/*.html",
+      dest: "generated/angular/tpl-index.js"
     }
   },
 
   // configuration for grunt-ngmin, this happens _after_ concat once, which is the ngmin ideal :)
   ngmin: {
-    js: {
-      src: "<%= files.js.concatenated %>",
-      dest: "<%= files.js.concatenated %>"
+    js:{
+      files: {
+        "<%= files.js.common.dest %>" : ["<%= files.js.common.dest %>"],
+        "<%= files.js.index.dest %>" : ["<%= files.js.index.dest %>"]
+      }
     }
   },
 
@@ -63,8 +64,11 @@ module.exports = require(process.env['LINEMAN_MAIN']).config.extend('application
       sourcesContent: true
     },
     js: {
-      src: ["<%= files.js.vendor %>", "<%= files.js.app %>", "<%= files.coffee.generated %>", "<%= files.ngtemplates.dest %>"],
-      dest: "<%= files.js.concatenated %>"
+      files: {
+        "<%= files.js.vendor.dest %>" : ["<%= files.js.vendor.src %>"],
+        "<%= files.js.common.dest %>" : ["<%= files.js.common.src %>"],
+        "<%= files.js.index.dest %>" : ["<%= files.js.index.src %>"]
+      }
     },
     spec: {
       src: ["<%= files.js.specHelpers %>", "<%= files.coffee.generatedSpecHelpers %>", "<%= files.js.spec %>", "<%= files.coffee.generatedSpec %>"],
@@ -76,29 +80,34 @@ module.exports = require(process.env['LINEMAN_MAIN']).config.extend('application
     }
   },
 
+  uglify:{
+    options:{
+      banner: "<%= meta.banner %>"
+    },
+    js:{
+      files:{
+        "<%= files.js.vendor.minified %>" : ["<%= files.js.vendor.dest %>"],
+        "<%= files.js.common.minified %>" : ["<%= files.js.common.dest %>"],
+        "<%= files.js.index.minified %>" : ["<%= files.js.index.dest %>"]
+      }
+    }
+  },
+
   // configures grunt-watch-nospawn to listen for changes to
   // and recompile angular templates, also swaps lineman default
   // watch target concat with concat_sourcemap
   watch: {
     ngtemplates: {
-      files: "app/templates/**/*.html",
+      files: ["app/js/**/*.html"],
       tasks: ["ngtemplates", "concat_sourcemap:js"]
     },
     js: {
-      files: ["<%= files.js.vendor %>", "<%= files.js.app %>"],
+      files: ["<%= files.js.vendor.src %>", "<%= files.js.common.src %>", "<%= files.js.index.src %>"],
       tasks: ["concat_sourcemap:js"]
-    },
-    coffee: {
-      files: "<%= files.coffee.app %>",
-      tasks: ["coffee", "concat_sourcemap:js"]
     },
     jsSpecs: {
       files: ["<%= files.js.specHelpers %>", "<%= files.js.spec %>"],
       tasks: ["concat_sourcemap:spec"]
-    },
-    coffeeSpecs: {
-      files: ["<%= files.coffee.specHelpers %>", "<%= files.coffee.spec %>"],
-      tasks: ["coffee", "concat_sourcemap:spec"]
     },
     css: {
       files: ["<%= files.css.vendor %>", "<%= files.css.app %>"],

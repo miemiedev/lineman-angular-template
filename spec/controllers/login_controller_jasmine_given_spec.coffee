@@ -1,6 +1,6 @@
 describe "controller: LoginController ($httpBackend.when().respond, jasmine-given, coffeescript)", ->
 
-  Given -> module("app")
+  Given -> module("index")
 
   Given inject ($controller, $rootScope, $location, AuthenticationService, @$httpBackend) ->
     @scope    = $rootScope.$new()

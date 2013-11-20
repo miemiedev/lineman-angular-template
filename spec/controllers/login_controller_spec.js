@@ -1,7 +1,7 @@
 describe("controller: LoginController ($httpBackend.expect().respond, vanilla jasmine, javascript)", function() {
 
   beforeEach(function() {
-    module("app");
+    module("index");
   });
 
   beforeEach(inject(function($controller, $rootScope, $location, AuthenticationService, $httpBackend) {

@@ -1,7 +1,7 @@
 describe("directive: shows-message-when-hovered (vanilla jasmine, coffeescript)", function() {
 
   beforeEach(function() {
-    module("app");
+    module("index");
   });
 
   beforeEach(inject(function($rootScope, $compile) {

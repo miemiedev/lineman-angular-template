@@ -1,6 +1,6 @@
 describe "controller: LoginController ($httpBackend.expect().respond, vanilla jasmine, coffeescript)", ->
 
-  beforeEach -> module("app")
+  beforeEach -> module("index")
 
   beforeEach inject ($controller, $rootScope, @$location, AuthenticationService, @$httpBackend) ->
     @scope    = $rootScope.$new()

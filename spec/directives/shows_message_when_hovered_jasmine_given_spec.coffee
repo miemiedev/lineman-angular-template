@@ -1,6 +1,6 @@
 describe "directive: shows-message-when-hovered (jasmine-given, coffeescript)", ->
 
-  Given -> module("app")
+  Given -> module("index")
 
   Given inject ($rootScope, $compile) ->
     @directiveMessage = 'ralph was here'

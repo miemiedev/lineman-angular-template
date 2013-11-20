@@ -1,6 +1,6 @@
 describe "service: AuthenticationService", ->
 
-  Given -> module("app")
+  Given -> module("index")
 
   Given -> inject ($http, @AuthenticationService) =>
     @$httpPost = spyOn($http, 'post')

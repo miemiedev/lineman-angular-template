@@ -1,5 +1,5 @@
 // with $resource
-angular.module("app").controller("BooksController", function ($scope, BookResource) {
+angular.module("index").controller("BooksController", function ($scope, BookResource) {
   // because the stubbed endpoint returns an array of results, .query() is used
   // if the endpoint returned an object, you would use .get()
   $scope.books = BookResource.query();
