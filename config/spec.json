@@ -3,7 +3,9 @@
   "launch_in_dev" : ["Chrome"],
   "launch_in_ci" : ["PhantomJS"],
   "src_files" : [
-    "generated/js/app.js",
+    "generated/js/vendor.js",
+    "generated/js/common.js",
+    "generated/js/index.js",
     "generated/js/spec.js"
   ]
 }
