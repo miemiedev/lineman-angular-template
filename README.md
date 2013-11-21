@@ -19,7 +19,7 @@ It includes the following features:
 
 # Instructions
 
-1. `git clone https://github.com/davemo/lineman-angular-template.git my-lineman-app`
+1. `git clone https://github.com/miemiedev/lineman-angular-template.git my-lineman-app`
 2. `cd my-lineman-app`
 3. `sudo npm install -g lineman`
 4. `npm install`
