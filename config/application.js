@@ -75,10 +75,25 @@ module.exports = require(process.env['LINEMAN_MAIN']).config.extend('application
       dest: "<%= files.js.concatenatedSpec %>"
     },
     css: {
-      src: ["<%= files.less.generatedVendor %>", "<%= files.sass.generatedVendor %>", "<%= files.css.vendor %>", "<%= files.less.generatedApp %>", "<%= files.sass.generatedApp %>", "<%= files.css.app %>"],
-      dest: "<%= files.css.concatenated %>"
+      src: ["<%= files.css.vendor %>", "<%= files.css.app %>"],
+      dest: "generated/css/vendor.css"
     }
   },
+
+
+  enableSass: true,
+  sass:{
+    compile:{
+      files: [{
+        expand: true,
+        cwd: "app/css",
+        src: "*.scss",
+        dest: 'generated/css',
+        ext: '.css'
+      }]
+    }
+  },
+
 
   uglify:{
     options:{
@@ -90,6 +105,19 @@ module.exports = require(process.env['LINEMAN_MAIN']).config.extend('application
         "<%= files.js.common.minified %>" : ["<%= files.js.common.dest %>"],
         "<%= files.js.index.minified %>" : ["<%= files.js.index.dest %>"]
       }
+    }
+  },
+
+
+  cssmin:{
+    minify:{
+      files: [{
+        expand: true,
+        cwd: "generated/css",
+        src: ["*.css"],
+        dest: 'dist/css',
+        ext: '.css'
+      }]
     }
   },
 

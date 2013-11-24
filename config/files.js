@@ -15,27 +15,20 @@ module.exports = require(process.env['LINEMAN_MAIN']).config.extend('files', {
 
   js: {
     vendor: {
-      src: ["vendor/js/angular.js","vendor/js/**/*.js"],
+      src: ["vendor/js/angular.js", "vendor/js/**/*.js"],
       dest: "generated/js/vendor.js",
       minified: "dist/js/vendor.js"
     },
     common: {
-      src: ["app/js/common/common.js","app/js/common/**/*.js"],
+      src: ["app/js/common/common.js", "app/js/common/**/*.js"],
       dest: "generated/js/common.js",
       minified: "dist/js/common.js"
     },
     index: {
-      src: ["app/js/index/index.js","app/js/index/router.js","app/js/index/**/*.js","generated/angular/tpl-index.js"],
+      src: ["app/js/index/index.js", "app/js/index/router.js", "app/js/index/**/*.js", "generated/angular/tpl-index.js"],
       dest: "generated/js/index.js",
       minified: "dist/js/index.js"
     }
-  },
-
-  less: {
-    compile: {
-      options: {
-        paths: ["vendor/css/normalize.css", "vendor/css/**/*.css", "app/css/**/*.less"]
-      }
-    }
   }
+
 });

@@ -2,7 +2,9 @@
 <html ng-app="index">
   <head>
     <title><%= pkg.name %></title>
-    <link rel="stylesheet" type="text/css" href="/css/app.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="css/vendor.css" media="all" />
+      <link rel="stylesheet" type="text/css" href="css/main.css" media="all" />
+      <link rel="stylesheet" type="text/css" href="css/index.css" media="all" />
   </head>
   <body>
     <div class="row">
